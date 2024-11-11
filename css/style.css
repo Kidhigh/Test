@@ -117,14 +117,36 @@ font-weight: 900;
 	}
 /* Home Style */
 #tf-home{
-	background: url(../WebNew\ \(1\).gif);
+
+
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	color: #cfcfcf;
 }
+.back-video{
+	position: absolute;
+	justify-content: center;
+	margin-top: 100px;
+	right: 0;
+	bottom: 16.9%;
+	object-fit: cover;
+	z-index: -1;
+}
 
+@media (min-aspect-ratio: 16/9){
+.back-video {
+	width: 100%;
+	height: 100%;
+}
+}
+@media (max-aspect-ratio: 16/9){
+	.back-video {
+		width: 100%;
+		height: 100%;
+	}
+	}
 #tf-home .overlay{
 	background: -moz-linear-gradient(top,  rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.73) 17%, rgba(0,0,0,0.66) 35%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.4) 100%); /* FF3.6+ */
 	background: -webkit-linear-gradient(top,  rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.73) 17%,rgba(0,0,0,0.66) 35%,rgba(0,0,0,0.55) 62%,rgba(0,0,0,0.4) 100%); /* Chrome10+,Safari5.1+ */
