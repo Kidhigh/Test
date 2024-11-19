@@ -115,6 +115,15 @@ font-weight: 900;
 .navbar-default .navbar-toggle:hover>.icon-bar {
 	background-color: #FFF;
 	}
+h2 {
+    margin-bottom: 20px; /* Ensure there's space under h2 */
+    line-height: 1.4; /* Adjust line height for clarity */
+}
+
+h2 strong {
+    letter-spacing: 0.5px; /* Adjust letter spacing if it's too tight */
+}
+
 /* Home Style */
 #tf-home{
     
