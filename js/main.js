@@ -78,19 +78,21 @@ document.querySelector(".loader").style.height="0";
 
 const lenis = new Lenis({
 
-    duration: 1.2,
+    duration:1.2,
 
-    easing: (t) => 
-    1 - Math.pow(1 - t, 3),
+    easing:(t)=>1-Math.pow(1-t,3),
 
-    smoothWheel: true,
+    smoothWheel:true,
 
-    wheelMultiplier: 0.8,
+    wheelMultiplier:.8,
 
     touchMultiplier:1.5,
 
     syncTouch:true,
-    
+
+    prevent:(node)=>{
+        return node.closest(".mobile-menu");
+    }
 
 });
 
@@ -598,73 +600,90 @@ document.querySelectorAll('a[href^="#"]')
 });
 
 
+
 /* ===================================
-PREMIUM MOBILE MENU
+   GSAP OFF-CANVAS MENU
 =================================== */
 
-const hamburger = document.querySelector(".hamburger");
-const mobileMenu = document.querySelector(".mobile-menu");
-const mobileLinks = document.querySelectorAll(".mobile-nav a");
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.mobile-menu');
+const backdrop = document.querySelector('.menu-backdrop');
+const mobileLinks = document.querySelectorAll('.mobile-nav a');
 
-if(hamburger){
-
-hamburger.addEventListener("click",()=>{
-
-const isOpen = mobileMenu.classList.contains("active");
-
-if(!isOpen){
-
-mobileMenu.classList.add("active");
-
-hamburger.classList.add("active");
-
-document.body.classList.add("menu-open");
-
-gsap.from(".mobile-nav a",{
-
-opacity:0,
-
-y:30,
-
-stagger:.08,
-
-duration:.7,
-
-ease:"power4.out"
-
+const menuTL = gsap.timeline({
+    paused:true
 });
 
-}
+menuTL
+.set(mobileMenu,{
+    visibility:"visible"
+},0)
 
-else{
+.set(backdrop,{
+    visibility:"visible",
+    pointerEvents:"auto"
+},0)
 
-closeMenu();
+.to(backdrop,{
+    opacity:1,
+    duration:.3
+},0)
 
-}
+.to(mobileMenu,{
+    x:0,
+    duration:.65,
+    ease:"power4.out"
+},0)
 
-});
+.from(".mobile-nav a",{
+    opacity:0,
+    x:30,
+    stagger:.08,
+    duration:.45
+},.15);
 
+let menuOpen = false;
+
+function openMenu() {
+    menuOpen = true;
+    hamburger.classList.add('active');
+    menuTL.play();
 }
 
 function closeMenu(){
 
-mobileMenu.classList.remove("active");
+    menuOpen = false;
 
-hamburger.classList.remove("active");
+    hamburger.classList.remove("active");
 
-document.body.classList.remove("menu-open");
+    menuTL.reverse();
 
 }
 
-mobileLinks.forEach(link=>{
+menuTL.eventCallback("onReverseComplete",()=>{
 
-link.addEventListener("click",()=>{
+    gsap.set(mobileMenu,{
+        visibility:"hidden"
+    });
 
-closeMenu();
+    gsap.set(backdrop,{
+        visibility:"hidden",
+        pointerEvents:"none"
+    });
 
 });
 
+
+hamburger.addEventListener('click', () => {
+    menuOpen ? closeMenu() : openMenu();
 });
+
+backdrop.addEventListener('click', closeMenu);
+
+mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+});
+
 
 
 
