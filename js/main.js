@@ -674,16 +674,19 @@ menuTL.eventCallback("onReverseComplete",()=>{
 });
 
 
-hamburger.addEventListener('click', () => {
-    menuOpen ? closeMenu() : openMenu();
-});
+if (hamburger) {
+    hamburger.addEventListener("click", () => {
+        menuOpen ? closeMenu() : openMenu();
+    });
+}
 
-backdrop.addEventListener('click', closeMenu);
+if (backdrop) {
+    backdrop.addEventListener("click", closeMenu);
+}
 
 mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener("click", closeMenu);
 });
-
 
 
 
@@ -737,27 +740,23 @@ CUSTOM CURSOR
 ====================== */
 
 
-const cursor=document.querySelector(".cursor");
+const cursor = document.querySelector(".cursor");
 
+if (cursor) {
 
+    window.addEventListener("mousemove", (e) => {
 
-window.addEventListener("mousemove",(e)=>{
+        gsap.to(cursor, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.25,
+            ease: "power3.out"
+        });
 
+    });
 
-gsap.to(cursor,{
+}
 
-x:e.clientX,
-
-y:e.clientY,
-
-duration:.25,
-
-ease:"power3.out"
-
-});
-
-
-});
 
 /* ==========================
 CASE STUDY IMAGE ZOOM
