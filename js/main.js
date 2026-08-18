@@ -758,6 +758,211 @@ if (cursor) {
 }
 
 
+
+
+/* ==========================================
+CASE STUDIES SLIDER
+========================================== */
+
+const caseTrack = document.querySelector(".case-track");
+
+if (caseTrack) {
+
+    const slides = document.querySelectorAll(".case-slide");
+
+    const nextBtn = document.querySelector(".case-next");
+    const prevBtn = document.querySelector(".case-prev");
+
+    const currentNumber = document.querySelector(".case-current");
+
+    let current = 0;
+    let animating = false;
+
+    gsap.set(caseTrack,{
+    xPercent:0
+       });
+
+        // Set initial state manually
+    
+        current = 0;
+    
+        currentNumber.textContent = "01";
+
+
+    function updateSlider() {
+
+        if (animating) return;
+
+        animating = true;
+
+        gsap.to(caseTrack, {
+
+            xPercent: -(current * 100),
+
+            duration: 0.9,
+
+            ease: "power3.inOut",
+
+            onComplete() {
+
+                animating = false;
+
+            }
+
+        });
+
+        gsap.fromTo(
+            slides[current].querySelector(".case-image img"),
+            {
+                scale: 1.08,
+                opacity: 0.85
+            },
+            {
+                scale: 1,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out"
+            }
+        );
+
+        currentNumber.textContent =
+            String(current + 1).padStart(2, "0");
+
+    }
+
+    function nextSlide() {
+
+        current++;
+
+        if (current >= slides.length) {
+
+            current = 0;
+
+        }
+
+        updateSlider();
+
+    }
+
+    function prevSlide() {
+
+        current--;
+
+        if (current < 0) {
+
+            current = slides.length - 1;
+
+        }
+
+        updateSlider();
+
+    }
+
+    nextBtn.addEventListener("click", nextSlide);
+
+    prevBtn.addEventListener("click", prevSlide);
+
+
+    /* ======================
+       Keyboard Navigation
+    ====================== */
+
+    document.addEventListener("keydown", (e) => {
+
+        if (e.key === "ArrowRight") {
+
+            nextSlide();
+
+        }
+
+        if (e.key === "ArrowLeft") {
+
+            prevSlide();
+
+        }
+
+    });
+
+
+    /* ======================
+       Mobile Swipe
+    ====================== */
+
+    let startX = 0;
+
+    let endX = 0;
+
+    caseTrack.addEventListener("touchstart", (e) => {
+
+        startX = e.touches[0].clientX;
+
+    });
+
+    caseTrack.addEventListener("touchmove", (e) => {
+
+        endX = e.touches[0].clientX;
+
+    });
+
+    caseTrack.addEventListener("touchend", () => {
+
+        const distance = startX - endX;
+
+        if (distance > 60) {
+
+            nextSlide();
+
+        }
+
+        if (distance < -60) {
+
+            prevSlide();
+
+        }
+
+    });
+
+
+    /* ======================
+       Optional Auto Play
+    ====================== */
+
+    let autoPlay;
+
+
+    setTimeout(() => {
+    autoPlay = setInterval(nextSlide, 7000);
+
+    }, 7000); 
+    caseTrack.addEventListener("mouseenter", () => {
+
+        clearInterval(autoPlay);
+
+    });
+
+    caseTrack.addEventListener("mouseleave", () => {
+
+        autoPlay = setInterval(nextSlide, 7000);
+
+    });
+
+
+    // Set the initial position without animating
+
+    gsap.set(caseTrack, {
+    xPercent: 0
+
+});
+
+
+    current = 0;
+
+    currentNumber.textContent = "01";
+
+}
+
+
+
 /* ==========================
 CASE STUDY IMAGE ZOOM
 ========================== */

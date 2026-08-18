@@ -370,7 +370,7 @@ transform:scale(1.08);
 
 .primary:hover{
 
-    background:transparent;
+    background:#080808;
 
     color:#fff;
 
@@ -1154,8 +1154,389 @@ transform:none;
 }
 
 
+/* ==========================================
+CASE STUDIES
+========================================== */
+
+.case-studies{
+
+    background:transparent;
+    position:relative;
+    overflow:hidden;
+
+}
+
+.case-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:70px;
+
+}
+
+.case-counter{
+
+    display:flex;
+    align-items:flex-end;
+    gap:8px;
+
+    font-size:20px;
+    font-weight:500;
+
+}
+
+.case-current{
+
+    font-size:56px;
+    line-height:1;
+
+    color:#111;
+
+}
+
+.case-divider{
+
+    color:#999;
+    margin-bottom:8px;
+
+}
+
+.case-total{
+
+    color:#999;
+    margin-bottom:8px;
+
+}
 
 
+/* ==========================
+SLIDER
+========================== */
+
+.case-slider{
+
+    position:relative;
+    overflow:hidden;
+
+}
+
+.case-track{
+
+    display:flex;
+    transition:transform .8s cubic-bezier(.22,1,.36,1);
+
+}
+
+.case-slide{
+
+    min-width:100%;
+
+    display:grid;
+
+    grid-template-columns:58% 42%;
+
+    gap:70px;
+
+    align-items:center;
+
+}
+
+
+/* ==========================
+IMAGE
+========================== */
+
+.case-image{
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    background:#ddd;
+
+}
+
+.case-image img{
+
+    width:100%;
+
+    height:620px;
+
+    object-fit:cover;
+
+    transition:1s cubic-bezier(.22,1,.36,1);
+
+}
+
+.case-slide:hover .case-image img{
+
+    transform:scale(1.04);
+
+}
+
+
+/* ==========================
+CARD
+========================== */
+
+.case-card{
+
+    background:white;
+
+    padding:55px;
+
+    border-radius:28px;
+
+    box-shadow:none;
+
+}
+
+.case-number{
+
+    display:inline-block;
+
+    margin-bottom:20px;
+
+    color:#B89C74;
+
+    letter-spacing:.25em;
+
+    font-size:13px;
+
+}
+
+.case-card h3{
+
+    font-size:46px;
+
+    line-height:1.05;
+
+    margin-bottom:35px;
+
+}
+
+.case-section{
+
+    margin-bottom:30px;
+
+}
+
+.case-section h4{
+
+    font-size:17px;
+
+    margin-bottom:10px;
+
+    color:#111;
+
+}
+
+.case-section p{
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    color:rgba(17,17,17,.72);
+
+}
+
+
+/* ==========================
+BUTTON
+========================== */
+
+.case-card .button{
+
+    margin-top:15px;
+
+}
+
+
+/* ==========================
+CONTROLS
+========================== */
+
+.case-controls{
+
+    position:absolute;
+
+    right:40px;
+    bottom:40px;
+
+    display:flex;
+    gap:16px;
+
+    background:transparent;
+    box-shadow:none;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+
+    padding:0;
+    margin:0;
+
+    z-index:20;
+
+}
+
+.case-nav{
+
+    width:60px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#111;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+
+    0 10px 35px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.case-nav svg{
+
+    width:22px;
+
+    height:22px;
+
+}
+
+.case-nav:hover{
+
+    background:#111;
+
+    color:#fff;
+
+    transform:translateY(-3px);
+
+}
+
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media(max-width:1100px){
+
+.case-slide{
+
+grid-template-columns:1fr;
+
+gap:40px;
+
+}
+
+.case-image img{
+
+height:450px;
+
+}
+
+.case-card{
+
+padding:40px;
+
+}
+
+.case-card h3{
+
+font-size:38px;
+
+}
+
+.case-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:30px;
+
+}
+
+.case-controls{
+
+justify-content:center;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+.case-studies{
+
+padding:100px 25px;
+
+}
+
+.case-image img{
+
+height:280px;
+
+}
+
+.case-card{
+
+padding:30px;
+
+border-radius:20px;
+
+}
+
+.case-card h3{
+
+font-size:30px;
+
+}
+
+.case-section p{
+
+font-size:15px;
+
+line-height:1.7;
+
+}
+
+.case-current{
+
+font-size:38px;
+
+}
+
+.case-controls{
+
+margin-top:30px;
+
+}
+
+.case-nav{
+
+width:52px;
+
+height:52px;
+
+}
+
+}
 
 
 /* ==========================
